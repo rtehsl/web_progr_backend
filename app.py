@@ -33,13 +33,17 @@ def author():
 @app.route('/lab1/oak')
 def oak ():
     path = url_for("static", filename="oak.jpg")
+    style = url_for("static", filename="lab1.css")
     return '''
 <!doctype html>
 <html>
-    <body>
-        <h1>Дуб</h1>
-        <img src="''' + path + '''">
-    </body>
+    <head>
+    <link href="''' + style + '''" rel="stylesheet">
+    </head>
+        <body>
+            <h1>Дуб</h1>
+            <img src="''' + path + '''">
+        </body>
 </html>
 '''
 
@@ -62,7 +66,7 @@ def counter():
 def info():
     return redirect("/author")
 
-@app.route("lab1/created")
+@app.route("/lab1/created")
 def created():
     return '''
 <!doctype html>
@@ -73,8 +77,6 @@ def created():
     </body>
 </html>
 ''', 201
-
-app = Flask(__name__)
 
 @app.errorhandler(404)
 def not_found(err):
