@@ -1,7 +1,7 @@
 from flask import Flask, url_for, redirect
 app = Flask(__name__)
 
-@app.route("lab1/web")
+@app.route("/lab1/web")
 def web():
     return """<!doctype html>
         <html>
@@ -14,7 +14,7 @@ def web():
             "Content-Type": "text/plain; charset=utf-8"
             }
 
-@app.route("lab1/author")
+@app.route("/lab1/author")
 def author():
     name = "Перевязко Алина Юрьевна"
     group = "ФБИ-21"
@@ -26,7 +26,7 @@ def author():
                <p>Студент: """ + name + """</p>
                <p>Группа: """ + group + """</p>
                <p>Факультет: """ + faculty + """</p>
-               <a href="/web">web</a>
+               <a href="/lab1/web">web</a>
            </body>
         </html>"""
 
@@ -81,9 +81,9 @@ def reset_counter():
 if __name__ == '__main__':
     app.run(debug=True)
 
-@app.route("lab1/info")
+@app.route("/lab1/info")
 def info():
-    return redirect("lab1/author")
+    return redirect("/lab1/author")
 
 @app.route("/lab1/created")
 def created():
@@ -100,3 +100,23 @@ def created():
 @app.errorhandler(404)
 def not_found(err):
     return "нет такой страницы", 404
+
+@app.route('/')
+@app.route('/index')
+def index():
+    style = url_for("static", filename = "lab1.css")
+    return '''<!doctype html>
+        <html>
+        <head>
+            <link rel = "stylesheet" href="''' + style +'''"
+            <meta charset="UTF-8">
+            <title>Перевязко Алина Юрьевна. Лабораторная работа 1</title>
+        </head>
+           <header>
+                НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
+           </header>
+           <body>
+                <a href='/lab1'>Первая лабораторная</a>
+           </body>
+           <footer>Перевязко Алина Юрьевна, ФБИ-21, 3 курс, 2024</footer>
+        </html>''', 200
