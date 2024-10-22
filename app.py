@@ -140,5 +140,24 @@ def lab1():
                 </p>
                 <a href="/">Главная страница</a>
            </body>
-           <footer>Безделов Роман Артемович, ФБИ-22, 3 курс, 2024</footer>
+           <footer>Перевязко Алина Юрьевна, ФБИ-22, 3 курс, 2024</footer>
         </html>''', 200
+
+@app.route('/error/400')
+def error_400():
+    return 'Неправильный запрос', 400
+@app.route('/error/401')
+def error_401():
+    return 'Отказ в доступе', 401
+@app.route('/error/402')
+def error_402():
+    return 'Требуется оплата', 402
+@app.route('/error/403')
+def error_403():
+    return 'Запрещенный', 403
+@app.route('/error/405')
+def error_405():
+    return 'Метод не поддерживается', 405
+@app.route('/error/418')
+def error_418():
+    return "Я не буду варить кофе, потому что я чайник", 418
