@@ -191,3 +191,38 @@ def internal_error(error):
     </body>
 </html>
 ''', 500
+
+@app.route('/anna')
+def heavy_metal():
+    path = url_for("static", filename = "anna.jpg")
+    style = url_for("static", filename = "lab1.css")
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <link rel = "stylesheet" href="''' + style +'''"
+        <meta charset="UTF-8">
+        <title>Камень не дам</title>
+    </head>
+    <body>
+        <h1>Царица</h1>
+        <p>
+            Все твои романы — тяжёлый вид спорта
+        </p>
+        <p>
+            Каждый бывший выводил из зоны комфорта
+        </p>
+        <p>
+            Каждый бывший — тренер личностного роста
+        </p>
+        <p>
+            Ты стала хитрее, детка стала взрослой
+        </p>
+        <img src="''' + path + '''" alt="anna">
+    </body>
+</html>
+''', 200, {
+    'Content-Language': 'ru',
+    'X-Custom-Header-1': 'Anna',
+    'X-Custom-Header-2': 'Asti'
+}
