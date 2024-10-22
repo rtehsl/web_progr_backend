@@ -222,7 +222,7 @@ def heavy_metal():
     <head>
         <link rel = "stylesheet" href="''' + style +'''"
         <meta charset="UTF-8">
-        <title>Камень не дам</title>
+        <title>Царица</title>
     </head>
     <body>
         <h1>Царица</h1>
