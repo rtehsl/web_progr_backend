@@ -3,8 +3,9 @@ app = Flask(__name__)
 
 @app.route('/lab2/example')
 def example():
-    return render_template('example.html')
-    
+    name = 'Перевязко Алина'
+    return render_template('example.html', name=name)
+
 @app.route("/lab1/web")
 def web():
     return """<!doctype html>
