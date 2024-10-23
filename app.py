@@ -18,6 +18,10 @@ def example():
                             name=name, group=group, laba=laba, 
                             cours=cours, fruits=fruits)
 
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2.html')
+
 @app.route("/lab1/web")
 def web():
     return """<!doctype html>
