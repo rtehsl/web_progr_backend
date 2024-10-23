@@ -246,3 +246,11 @@ def heavy_metal():
     'X-Custom-Header-1': 'Anna',
     'X-Custom-Header-2': 'Asti'
 }
+
+@app.route('/laba2/a')
+def a():
+    return 'без слэша'
+
+@app.route('/laba2/a/')
+def a2():
+    return 'со слэшем'
