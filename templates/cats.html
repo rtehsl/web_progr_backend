@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Котики</title>
+    <style>
+        .cat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cat img {
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        .cat .description {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Породы кошек</h1>
+    {% for cat in cats %}
+    <div class="cat">
+        <img src="{{ url_for('static', filename=cat.image) }}" alt="{{ cat.name }}">
+        <div class="description">
+            <h2>{{ cat.name }}</h2>
+            <p>{{ cat.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
