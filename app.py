@@ -22,6 +22,34 @@ def example():
 def lab2():
     return render_template('lab2.html')
 
+@app.route('/lab2/calc/<int:a>/<int:b>')
+def calc(a, b):
+    sum_result = a + b
+    sub_result = a - b
+    mul_result = a * b
+    div_result = a / b if b != 0 else "Деление на ноль"
+    pow_result = a ** b
+    
+    return f'''
+<!doctype html>
+<html>
+<body>
+    <h1>Результаты математических операций</h1>
+    <p>Сумма: {a} + {b} = {sum_result}</p>
+    <p>Разность: {a} - {b} = {sub_result}</p>
+    <p>Произведение: {a} * {b} = {mul_result}</p>
+    <p>Деление: {a} / {b} = {div_result}</p>
+    <p>Возведение в степень: {a}<sup>{b}</sup> = {pow_result}</p>
+</body>
+</html>
+'''
+@app.route('/lab2/calc/')
+def calc_default():
+    return redirect(url_for('calc', a=1, b=1))
+@app.route('/lab2/calc/<int:a>')
+def calc_single_number(a):
+    return redirect(url_for('calc', a=a, b=1))
+
 @app.route('/lab2/filters')
 def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
@@ -334,3 +362,4 @@ def clear_flowers():
 </body>
 </html>
 '''
+
