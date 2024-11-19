@@ -15,14 +15,14 @@ def example():
         {'name': 'мандарины', 'price': 95},
         {'name': 'манго', 'price': 95}
     ]
-    return render_template('example.html', 
+    return render_template('lab2/example.html', 
                             name=name, group=group, laba=laba, 
                             cours=cours, fruits=fruits)
 
 
 @lab2.route('/lab2/')
 def lab22():
-    return render_template('lab2.html')
+    return render_template('lab2/lab2.html')
 
 
 @lab2.route('/lab2/calc/<int:a>/<int:b>')
@@ -50,12 +50,12 @@ def calc(a, b):
 
 @lab2.route('/lab2/calc/')
 def calc_default():
-    return redirect(url_for('calc', a=1, b=1))
+    return redirect(url_for('lab2.calc', a=1, b=1))
 
 
 @lab2.route('/lab2/calc/<int:a>')
 def calc_single_number(a):
-    return redirect(url_for('calc', a=a, b=1))
+    return redirect(url_for('lab2.calc', a=a, b=1))
 books = [
     {"author": "Джордж Оруэлл", "title": "1984", "genre": "Научная фантастика", "pages": 328},
     {"author": "Рэй Брэдбери", "title": "451 градус по Фаренгейту", "genre": "Научная фантастика", "pages": 158},
@@ -72,13 +72,13 @@ books = [
 
 @lab2.route('/lab2/books')
 def show_books():
-    return render_template('books.html', books=books)
+    return render_template('lab2/books.html', books=books)
 
 
 @lab2.route('/lab2/filters')
 def filters():
     phrase = "О <b>сколько</b> <u>нам</u> <i>открытий</i> чудных..."
-    return render_template('filter.html', phrase = phrase)
+    return render_template('lab2/filter.html', phrase = phrase)
 
 
 @lab2.route('/laba2/a')
@@ -103,7 +103,7 @@ def flowers(flower_id):
 
 @lab2.route('/lab2/add_flower/<name>')
 def add_flower(name):
-    flower_list.lab2end(name)
+    flower_list.append(name)
     return f'''
 <!doctype html>
 <html>
@@ -142,7 +142,7 @@ def all_flowers():
 def clear_flowers():
     global flower_list
     flower_list = []
-    all_flowers_link = url_for('all_flowers')
+    all_flowers_link = url_for('lab2.all_flowers')
     return f'''
 <!doctype html>
 <html>
