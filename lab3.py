@@ -164,3 +164,13 @@ def formTrain():
     return render_template('lab3/ticket.html', fio=fio, place=place, linen=linen, luggage=luggage,
                         age=age, start=start, end=end, date=date, insurance=insurance, errors=errors,
                         argsNames=argsNames, check=check, ticketcost=ticketcost)
+
+
+@lab3.route('/lab3/clear_cookies', methods=['POST'])
+def clear_cookies():
+    resp = make_response(redirect(('settings')))
+    resp.delete_cookie('color')
+    resp.delete_cookie('background_color')
+    resp.delete_cookie('font_size')
+    resp.delete_cookie('padding')
+    return resp
