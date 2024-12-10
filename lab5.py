@@ -84,9 +84,9 @@ def login():
     cur = conn.cursor(cursor_factory=RealDictCursor)
 
     if current_app.config['DB_TYPE'] == 'postgres':
-        cur.execute("SELECT * FROM users WHERE login=%s;", (login, ))
+        cur.execute("SELECT login, password FROM users WHERE login=%s;", (login, ))
     else:
-        cur.execute("SELECT * FROM users WHERE login=?;", (login, ))
+        cur.execute("SELECT login, password FROM users WHERE login=?;", (login, ))
     user = cur.fetchone()
 
     if user is None:
