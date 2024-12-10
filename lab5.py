@@ -81,7 +81,12 @@ def login():
             return render_template('lab5/login.html', error='Заполните поля')
             
     conn, cur = db_connect()
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    if current_app.config['DB_TYPE'] == 'postgres':
+        # Для PostgreSQL используем cursor_factory
+        cur = conn.cursor(cursor_factory=RealDictCursor)
+    else:
+        # Для SQLite используем sqlite3.Row для получения словаря
+        cur = conn.cursor()
 
     if current_app.config['DB_TYPE'] == 'postgres':
         cur.execute("SELECT login, password FROM users WHERE login=%s;", (login, ))
