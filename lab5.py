@@ -75,10 +75,32 @@ def login():
         db_close(conn, cur)
         return render_template('lab5/login.html', error='Логин и/или пароль неверны')
     
-    if not check_password_hash['password'] !=password:
+    if not check_password_hash(user['password'], password):
         db_close(conn, cur)
         return render_template('lab5/login.html', error='Логин и/или пароль неверны')
     
     session['login'] = login
     db_close(conn, cur)
     return render_template('lab5/success_login.html', login=login)
+
+
+@lab5.route('/lab5/create', methods = ['GET', 'POST'])
+def create():
+    login=session.get('login')
+    if not login:
+        return redirect('/lab5/login')
+    
+    if request.method == 'GET':
+        return render_template('lab5/create_article.html')
+    
+    tittle = request.form.get('tittle')
+    article_text = request.form.get('article_text')
+
+    conn, cur = db_connect()
+    cur.execute("SELECT * FROM users WHERE login=%s;", (login, ))
+    login_id = cur.fetchone()["id"]
+
+    cur.execute(f"INSERT INTO articles(user_id, tittle, article_text) VALUES ({login_id}, '{tittle}', '{article_text}');")
+
+    db_close(conn, cur)
+    return redirect('/lab5')
