@@ -35,19 +35,26 @@
                     } else {
                         li.innerText = `${office.number}: Свободен`;
                     }
+
+                    // Создаем элемент для цены
+                    const price = document.createElement('span');
+                    price.innerText = `${office.price} Руб./мес.`;
+                    li.appendChild(price);
+
+                    // Создаем кнопку "Забронировать"
                     const bookingButton = document.createElement('button');
                     bookingButton.innerText = 'Забронировать';
                     bookingButton.onclick = () => booking(office.number);
                     li.appendChild(bookingButton);
+
+                    // Если офис занят, добавляем кнопку "Освободить"
                     if (office.tenant) {
                         const cancelButton = document.createElement('button');
                         cancelButton.innerText = 'Освободить';
                         cancelButton.onclick = () => cancelBooking(office.number);
                         li.appendChild(cancelButton);
                     }
-                    const price = document.createElement('span');
-                    price.innerText = `${office.price} Руб./мес.`;
-                    li.appendChild(price);
+
                     ul.appendChild(li);
                 });
                 const mountly_price = document.getElementById('mountly-price');
@@ -133,4 +140,64 @@
     <h1>Список кабинетов</h1>
     <ul id="office-list"></ul>
     <div id="mountly-price"></div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        #office-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        #office-list li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #office-list li span {
+            color: #555;
+            font-size: 14px;
+            margin-right: 10px; /* Добавлено для отступа между ценой и кнопками */
+        }
+
+        #office-list button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #office-list button:hover {
+            background-color: #0056b3;
+        }
+
+        #mountly-price {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+    </style>
 {% endblock %}
