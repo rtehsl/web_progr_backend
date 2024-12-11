@@ -21,9 +21,9 @@ app.register_blueprint(lab6)
 
 @app.errorhandler(404)
 def not_found(err):
-      path = url_for("static", filename = "404.jpg")
-      style = url_for("static", filename = "lab1.css")
-      return '''
+    path = url_for("static", filename = "404.jpg")
+    style = url_for("static", filename = "lab1.css")
+    return '''
 <!doctype html>
 <html>
 <head>
@@ -38,13 +38,13 @@ def not_found(err):
 @app.route('/')
 @app.route('/index')
 def index():
-    style = url_for("static", filename = "lab1.css")
+    style = url_for("static", filename = "lab1/lab1.css")
     return '''<!doctype html>
         <html>
         <head>
             <link rel = "stylesheet" href="''' + style +'''"
             <meta charset="UTF-8">
-            <title>Безделов Роман Артемович. Лабораторная работа 1</title>
+            <title>Перевязко Алина Юрьевна. Лабораторная работа 1</title>
         </head>
            <header>
                 НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
@@ -55,17 +55,38 @@ def index():
                 <a href='/lab2'>Вторая лабораторная</a>
                 <br>
                 <a href='/lab3'>Третья лабораторная</a>
-                <br>
+                 <br>
                 <a href='/lab4'>Четвертая лабораторная</a>
                 <br>
                 <a href='/lab5'>Пятая лабораторная</a>
                 <br>
                 <a href='/lab6'>Шестая лабораторная</a>
            </body>
-           <footer>Безделов Роман Артемович, ФБИ-22, 3 курс, 2024</footer>
+           <footer>Перевязко Алина Юрьевна, ФБИ-21, 3 курс, 2024</footer>
         </html>''', 200
 
+@app.route('/error/400')
+def error_400():
+    return 'Неправильный запрос', 400
+@app.route('/error/401')
+def error_401():
+    return 'Отказ в доступе', 401
+@app.route('/error/402')
+def error_402():
+    return 'Требуется оплата', 402
+@app.route('/error/403')
+def error_403():
+    return 'Запрещенный', 403
+@app.route('/error/405')
+def error_405():
+    return 'Метод не поддерживается', 405
+@app.route('/error/418')
+def error_418():
+    return "Я не буду варить кофе, потому что я чайник", 418
 
+@app.route('/trigger_error')
+def trigger_error():
+    return 1 / 0
 @app.errorhandler(500)
 def internal_error(error):
     return '''
@@ -80,5 +101,3 @@ def internal_error(error):
     </body>
 </html>
 ''', 500
-
-
