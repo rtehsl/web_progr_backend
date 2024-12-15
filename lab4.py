@@ -63,7 +63,7 @@ def tree():
             tree_count = 0
 
     elif operation == 'plant':
-        if tree_count <= 10:
+        if tree_count <= 9:
             tree_count += 1
         else:
             tree_count = 10
