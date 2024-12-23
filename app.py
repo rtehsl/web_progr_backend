@@ -26,11 +26,11 @@ if app.config['DB_TYPE'] == 'postgres':
     host_ip = '127.0.0.1'
     host_port = 5432
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}: {db_password}@{host_ip}/{db_name}' 
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{host_ip}:{host_port}/{db_name}' 
 else:
     dir_path = path.dirname(path.realpath(__file__))
     db_path = path.join(dir_path, 'alina_perevyazko_orm.db')
-    app.config['SQLALCHEMY_DATABASE_URL'] = f'sqlite:///{db_path}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
 
 db.init_app(app)
 
