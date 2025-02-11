@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block lab %} Детали выбора {% endblock %}
+{% block main %}
+    <h1>❄️А что именно?:3❄️</h1>
+    <form method="POST">
+        {% if choice == 'вкусное' %}
+            <input type="radio" name="detail" value="сладкое" required> Сладкое🍬
+            <input type="radio" name="detail" value="сытное" required> Сытное🍕 <br>
+        {% elif choice == 'красивое' %}
+            <input type="radio" name="detail" value="роскошное" required> Роскошное💎
+            <input type="radio" name="detail" value="стильное" required> Стильное👗 <br>
+        {% endif %}
+        <button type="submit">Далее</button>
+    </form>
+{% endblock %}
